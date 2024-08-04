@@ -1,7 +1,8 @@
 [versions]
 jetpack-navigation = "2.7.7"
-android-gradle-plugin = "8.2.2"
-kotlin = "1.9.0"
+android-gradle-plugin = "8.5.1"
+kotlin = "2.0.0"
+hilt = "2.51.1"
 
 [libraries]
 
@@ -20,7 +21,7 @@ compose-ui.module = "androidx.compose.ui:ui"
 compose-ui-graphics.module = "androidx.compose.ui:ui-graphics"
 compose-ui-tooling-preview.module = "androidx.compose.ui:ui-tooling-preview"
 compose-material3.module = "androidx.compose.material3:material3"
-androidx-activity-compose = "androidx.activity:activity-compose:1.9.0"
+androidx-activity-compose = "androidx.activity:activity-compose:1.9.1"
 androidx-compose-runtime-livdata.module = "androidx.compose.runtime:runtime-livedata"
 
 ## Android Test Internal Dependencies
@@ -44,7 +45,7 @@ androidx-navigation-testing = { module = "androidx.navigation:navigation-testing
 
 # Hilt
 ## Internal Dependencies
-hilt-android = { module = "com.google.dagger:hilt-android", version = "2.48" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 
 ## Annotation Processors
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version = "2.48" }
@@ -54,14 +55,14 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 ## Internal Dependencies
 androidx-appcompat = "androidx.appcompat:appcompat:1.7.0"
 androidx-core-ktx = "androidx.core:core-ktx:1.13.1"
-androidx-lifecycle-runtime-ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.8.2"
+androidx-lifecycle-runtime-ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4"
 
 ## Test Internal Dependencies
 junit = "junit:junit:4.13.2"
 
 ## Android Test Internal Dependencies
-androidx-test-junit = "androidx.test.ext:junit:1.1.5"
-androidx-test-expresso-core = "androidx.test.espresso:espresso-core:3.5.1"
+androidx-test-junit = "androidx.test.ext:junit:1.2.1"
+androidx-test-expresso-core = "androidx.test.espresso:espresso-core:3.6.1"
 
 [bundles]
 androidtemplate-common = ["androidtemplate-core", "androidtemplate-ui"]
@@ -79,6 +80,7 @@ android-test-navigation = ["androidx-navigation-testing"]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
-hilt-android = { id = "com.google.dagger.hilt.android", version = "2.48" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlin-ksp = { id = "com.google.devtools.ksp", version = "1.9.0-1.0.13" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.24" }
+kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

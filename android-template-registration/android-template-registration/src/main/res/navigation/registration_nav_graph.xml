@@ -9,10 +9,10 @@
 
     <fragment
         android:id="@+id/landingFragment"
-        android:name="com.duartbreedt.androidtemplate.registration.LandingFragment"/>
+        android:name="com.duartbreedt.androidtemplate.registration.view.LandingFragment"/>
 
     <fragment
         android:id="@+id/personalizeProfile"
-        android:name="com.duartbreedt.androidtemplate.registration.PersonalizeProfileFragment"/>
+        android:name="com.duartbreedt.androidtemplate.registration.view.PersonalizeProfileFragment"/>
 
 </navigation>

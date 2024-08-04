@@ -4,12 +4,11 @@
 - Custom typography for the material theme (e.g. define Style.smallTitle)
 
 ## TODO
+- Create plugin to extract common app/library set up
 - Register (own activity & module)
   - RoomDB
-  - LiveData
-  - VMs
+- KTor API
 - Login (own activity & module)
-- Create plugin to extract common app/library set up
 - Article on my set up.
 - Article on why using plugins for dependencies in an enterprise environment discourages innovation and flexibility. 
 
@@ -22,3 +21,4 @@
 - Composite builds for local development (in lieu of mavenLocal repository)
 - Sharing data models (data modules)
 - DI with Hilt
+- MVVM

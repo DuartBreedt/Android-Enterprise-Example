@@ -58,9 +58,7 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    // TODO Extract to published artifact
-    implementation("com.duartbreedt.androidtemplate:android-template-core:1.0.0-SNAPSHOT")
-    implementation("com.duartbreedt.androidtemplate:android-template-ui:1.0.0-SNAPSHOT")
+    implementation(libs.bundles.androidtemplate.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.expresso.core)

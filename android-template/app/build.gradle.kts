@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.compose.compiler)
+
+    id("application-gradle-plugin")
 }
 
 kotlin {
@@ -16,19 +18,12 @@ kotlin {
 
 android {
     namespace = "com.duartbreedt.androidtemplate"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.duartbreedt.androidtemplate"
-        minSdk = 24
-        targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -36,10 +31,6 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true

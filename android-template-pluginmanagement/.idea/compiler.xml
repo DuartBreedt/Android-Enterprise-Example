@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="android-template-catalog.buildSrc" target="17" />
+      <module name="android-template-catalog.buildSrc.main" target="17" />
+      <module name="android-template-catalog.buildSrc.test" target="17" />
+      <module name="android-template-pluginmanagement.buildSrc" target="17" />
+      <module name="android-template-pluginmanagement.buildSrc.main" target="17" />
+      <module name="android-template-pluginmanagement.buildSrc.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

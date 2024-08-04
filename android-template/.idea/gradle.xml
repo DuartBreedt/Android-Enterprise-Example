@@ -18,6 +18,11 @@
                   <project path="$PROJECT_DIR$/../android-template-core/android-template-core" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/../android-template-pluginmanagement" name="android-template-pluginmanagement">
+                <projects>
+                  <project path="$PROJECT_DIR$/../android-template-pluginmanagement" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/../android-template-registration" name="android-template-registration">
                 <projects>
                   <project path="$PROJECT_DIR$/../android-template-registration" />
@@ -42,6 +47,7 @@
             <option value="$PROJECT_DIR$/../android-template-catalog" />
             <option value="$PROJECT_DIR$/../android-template-core" />
             <option value="$PROJECT_DIR$/../android-template-core/android-template-core" />
+            <option value="$PROJECT_DIR$/../android-template-pluginmanagement" />
             <option value="$PROJECT_DIR$/../android-template-registration" />
             <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration" />
             <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration-data" />

@@ -5,8 +5,12 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.compose.compiler)
     `maven-publish`
+
+    // TODO Extract to catalog
+    id("library-gradle-plugin")
 }
 
+// TODO Extract from catalog in plugin
 group = "com.duartbreedt.androidtemplate"
 
 kotlin {
@@ -17,14 +21,11 @@ kotlin {
 
 android {
     namespace = "com.duartbreedt.androidtemplate"
+
+    // TODO Extract from catalog in plugin
     version = "1.0.0-SNAPSHOT"
 
-    compileSdk = 34
-
     defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -33,10 +34,6 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true

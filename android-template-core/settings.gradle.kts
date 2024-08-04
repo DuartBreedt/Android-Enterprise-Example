@@ -4,7 +4,19 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    // Local Plugins
+    val localPlugins: List<String> = listOf(
+        "../android-template-pluginmanagement"
+    )
+
+    localPlugins.forEach {
+        if (File(rootDir, it).exists()) {
+            includeBuild(it)
+        }
+    }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {

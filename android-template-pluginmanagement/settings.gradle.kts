@@ -1,20 +1,8 @@
 pluginManagement {
-
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
-    }
-
-    // Local Plugins
-    val localPlugins: List<String> = listOf(
-        "../android-template-pluginmanagement"
-    )
-
-    localPlugins.forEach {
-        if (File(rootDir, it).exists()) {
-            includeBuild(it)
-        }
     }
 }
 
@@ -23,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 
     versionCatalogs {
@@ -36,15 +25,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "android-template"
-include(":app")
+rootProject.name = "android-template-pluginmanagement"
 
 // Local Modules
 private val localModules: List<String> = listOf(
-    "../android-template-catalog",
-    "../android-template-core",
-    "../android-template-ui",
-    "../android-template-registration"
+    "../android-template-catalog"
 )
 
 localModules.forEach {

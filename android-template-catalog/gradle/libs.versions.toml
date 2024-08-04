@@ -1,6 +1,7 @@
 [versions]
 jetpack-navigation = "2.7.7"
 android-gradle-plugin = "8.2.2"
+kotlin = "1.9.0"
 
 [libraries]
 
@@ -76,7 +77,8 @@ android-test-navigation = ["androidx-navigation-testing"]
 [plugins]
 
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.0" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version = "2.48" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version = "1.9.0" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version = "1.9.0-1.0.13" }

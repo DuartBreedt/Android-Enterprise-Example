@@ -19,7 +19,7 @@ dependencyResolutionManagement {
             if (File(rootDir, "../android-template-catalog").exists()) {
                 from(files("../android-template-catalog/gradle/libs.versions.toml"))
             } else {
-                from("com.duartbreedt:android-template.android-template-catalog:1.0.0-SNAPSHOT")
+                from("com.duartbreedt.android-template:android-template-catalog:1.0.0-SNAPSHOT")
             }
         }
     }

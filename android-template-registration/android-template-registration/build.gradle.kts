@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    alias(libs.plugins.kotlin.kapt)
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.hilt.android)
     `maven-publish`
 }
 
@@ -39,7 +39,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     publishing {
         singleVariant("release") {
@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.bundles.androidtemplate.common)
     implementation(libs.androidtemplate.registration.data)
     testImplementation(libs.junit)
@@ -66,10 +66,6 @@ dependencies {
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.bundles.android.test.compose)
     debugImplementation(libs.bundles.debug.compose)
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 publishing {

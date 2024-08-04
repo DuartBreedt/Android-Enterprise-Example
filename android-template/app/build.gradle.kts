@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -40,7 +40,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.bundles.androidtemplate.common)
     implementation(libs.bundles.androidtemplate.registration)
     testImplementation(libs.junit)
@@ -67,8 +67,4 @@ dependencies {
     androidTestImplementation(libs.bundles.android.test.compose)
     implementation(libs.bundles.android.test.navigation)
     debugImplementation(libs.bundles.debug.compose)
-}
-
-kapt {
-    correctErrorTypes = true
 }

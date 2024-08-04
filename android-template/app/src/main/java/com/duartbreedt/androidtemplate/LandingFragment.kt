@@ -1,6 +1,5 @@
 package com.duartbreedt.androidtemplate
 
-import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,9 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.fragment.findNavController
-import com.duartbreedt.androidtemplate.registration.RegistrationActivity
 
 class LandingFragment : ComposeFragment() {
 
@@ -53,16 +49,6 @@ class LandingFragment : ComposeFragment() {
     }
 
     private fun startRegistrationActivity() {
-
-        // TODO: Use DI to provide this implementation on the Registration Module.
-        val activityNavigator: ActivityNavigator = findNavController().navigatorProvider.getNavigator(ActivityNavigator::class.java)
-        val newDestination: ActivityNavigator.Destination = activityNavigator.createDestination().apply {
-            setIntent(Intent(requireContext(), RegistrationActivity::class.java))
-            id = com.duartbreedt.androidtemplate.registration.R.id.registrationActivity
-            addDeepLink(getString(com.duartbreedt.androidtemplate.registration.R.string.deeplink_registration_landing))
-        }
-        findNavController().graph.addDestination(newDestination)
-
         navigate(getString(com.duartbreedt.androidtemplate.registration.R.string.deeplink_registration_landing))
     }
 

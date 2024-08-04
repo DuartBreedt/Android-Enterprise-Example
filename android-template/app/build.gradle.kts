@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -54,6 +56,8 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
     // TODO Extract to published artifact
     implementation("com.duartbreedt.androidtemplate:android-template-core:1.0.0-SNAPSHOT")
     implementation("com.duartbreedt.androidtemplate:android-template-ui:1.0.0-SNAPSHOT")
@@ -65,4 +69,8 @@ dependencies {
     androidTestImplementation(libs.bundles.android.test.compose)
     implementation(libs.bundles.android.test.navigation)
     debugImplementation(libs.bundles.debug.compose)
+}
+
+kapt {
+    correctErrorTypes = true
 }

@@ -33,6 +33,13 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 ## Android Test Internal Dependencies
 androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "jetpack-navigation" }
 
+# Hilt
+## Internal Dependencies
+hilt-android = { module = "com.google.dagger:hilt-android", version = "2.48" }
+
+## Annotation Processors
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version = "2.48" }
+
 # Misc
 
 ## Internal Dependencies

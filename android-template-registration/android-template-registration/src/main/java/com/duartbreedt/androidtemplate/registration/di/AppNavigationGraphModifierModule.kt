@@ -15,6 +15,8 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.multibindings.IntoSet
 import javax.inject.Inject
 
+import com.duartbreedt.androidtemplate.registration.data.R as DataR
+
 @Module
 @InstallIn(ActivityComponent::class)
 abstract class AppNavigationGraphModifierModule {
@@ -31,7 +33,7 @@ class AppNavigationGraphModifierImpl @Inject constructor(
     override fun addActivity(navController: NavController) {
 
         val newDestination: ActivityNavigator.Destination = navController.createActivityDestination(
-            RegistrationActivity::class, R.id.registrationActivity, R.string.deeplink_registration_landing, context
+            RegistrationActivity::class, R.id.registrationActivity, DataR.string.deeplink_registration_landing, context
         )
 
         navController.graph.addDestination(newDestination)

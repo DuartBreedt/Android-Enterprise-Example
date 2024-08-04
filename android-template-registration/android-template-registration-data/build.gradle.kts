@@ -9,7 +9,7 @@ plugins {
 group = "com.duartbreedt.androidtemplate"
 
 android {
-    namespace = "com.duartbreedt.androidtemplate.registration"
+    namespace = "com.duartbreedt.androidtemplate.registration.data"
     version = "1.0.0-SNAPSHOT"
 
     compileSdk = 34
@@ -59,7 +59,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     // TODO Extract to published artifact
-    implementation("com.duartbreedt.androidtemplate:android-template-registration-data:1.0.0-SNAPSHOT")
     implementation("com.duartbreedt.androidtemplate:android-template-core:1.0.0-SNAPSHOT")
     implementation("com.duartbreedt.androidtemplate:android-template-ui:1.0.0-SNAPSHOT")
     testImplementation(libs.junit)

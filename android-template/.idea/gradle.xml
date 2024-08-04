@@ -22,6 +22,7 @@
                 <projects>
                   <project path="$PROJECT_DIR$/../android-template-registration" />
                   <project path="$PROJECT_DIR$/../android-template-registration/android-template-registration" />
+                  <project path="$PROJECT_DIR$/../android-template-registration/android-template-registration-data" />
                 </projects>
               </build>
               <build path="$PROJECT_DIR$/../android-template-ui" name="android-template-ui">
@@ -43,6 +44,7 @@
             <option value="$PROJECT_DIR$/../android-template-core/android-template-core" />
             <option value="$PROJECT_DIR$/../android-template-registration" />
             <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration" />
+            <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration-data" />
             <option value="$PROJECT_DIR$/../android-template-ui" />
             <option value="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
             <option value="$PROJECT_DIR$/app" />

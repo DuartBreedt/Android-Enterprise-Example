@@ -33,7 +33,7 @@ private val localModules: List<String> = listOf(
     "../android-template-catalog",
     "../android-template-core",
     "../android-template-ui",
-    "../android-template-registration",
+    "../android-template-registration"
 )
 
 localModules.forEach {

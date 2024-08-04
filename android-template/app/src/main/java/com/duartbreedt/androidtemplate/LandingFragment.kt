@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+import com.duartbreedt.androidtemplate.registration.data.R as RegistrationR
+
 class LandingFragment : ComposeFragment() {
 
     @Composable
@@ -49,7 +51,7 @@ class LandingFragment : ComposeFragment() {
     }
 
     private fun startRegistrationActivity() {
-        navigate(getString(com.duartbreedt.androidtemplate.registration.R.string.deeplink_registration_landing))
+        navigate(getString(RegistrationR.string.deeplink_registration_landing))
     }
 
 

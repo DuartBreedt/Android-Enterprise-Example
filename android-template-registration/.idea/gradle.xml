@@ -36,6 +36,7 @@
             <option value="$PROJECT_DIR$/../android-template-core/android-template-core" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android-template-registration" />
+            <option value="$PROJECT_DIR$/android-template-registration-data" />
             <option value="$PROJECT_DIR$/../android-template-ui" />
             <option value="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
           </set>

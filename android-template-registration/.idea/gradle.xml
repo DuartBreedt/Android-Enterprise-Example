@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../android-template-catalog" name="android-template-catalog">
+                <projects>
+                  <project path="$PROJECT_DIR$/../android-template-catalog" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/../android-template-core" name="android-template-core">
+                <projects>
+                  <project path="$PROJECT_DIR$/../android-template-core" />
+                  <project path="$PROJECT_DIR$/../android-template-core/android-template-core" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/../android-template-ui" name="android-template-ui">
+                <projects>
+                  <project path="$PROJECT_DIR$/../android-template-ui" />
+                  <project path="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../android-template-catalog" />
+            <option value="$PROJECT_DIR$/../android-template-core" />
+            <option value="$PROJECT_DIR$/../android-template-core/android-template-core" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/android-template-registration" />
+            <option value="$PROJECT_DIR$/../android-template-ui" />
+            <option value="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

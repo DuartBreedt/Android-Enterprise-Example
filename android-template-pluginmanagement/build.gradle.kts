@@ -38,4 +38,5 @@ configure<GradlePluginDevelopmentExtension> {
 dependencies {
     // TODO Extract to catalog
     implementation("com.android.tools.build:gradle:8.5.1")
+    implementation(kotlin("gradle-plugin", version = "2.0.10"))
 }

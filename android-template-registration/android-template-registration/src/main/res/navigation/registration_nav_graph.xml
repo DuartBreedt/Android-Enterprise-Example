@@ -4,12 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/landingFragment">
+    android:id="@+id/registration_nav_graph"
+    app:startDestination="@id/registrationLandingFragment">
 
     <fragment
-        android:id="@+id/landingFragment"
-        android:name="com.duartbreedt.androidtemplate.registration.view.LandingFragment"/>
+        android:id="@+id/registrationLandingFragment"
+        android:name="com.duartbreedt.androidtemplate.registration.view.LandingFragment">
+
+        <deepLink
+            android:id="@+id/deeplink_registration_landing"
+            app:uri="@string/deeplink_registration_landing" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/personalizeProfile"

@@ -1,9 +1,10 @@
 package com.duartbreedt.androidtemplate.pluginmanagement
 
 import com.android.build.gradle.BaseExtension
-import org.gradle.api.JavaVersion
+import com.duartbreedt.androidtemplate.pluginmanagement.ProjectConfig.JAVA_VERSION
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 
 abstract class BaseGradlePlugin : Plugin<Project> {
 
@@ -18,11 +19,10 @@ abstract class BaseGradlePlugin : Plugin<Project> {
 
                 it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
+        }
 
-            compileOptions {
-                it.sourceCompatibility = JavaVersion.VERSION_17
-                it.targetCompatibility = JavaVersion.VERSION_17
-            }
+        project.configure<KotlinTopLevelExtension> {
+            jvmToolchain(JAVA_VERSION)
         }
     }
 }

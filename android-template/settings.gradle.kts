@@ -44,7 +44,9 @@ private val localModules: List<String> = listOf(
     "../android-template-catalog",
     "../android-template-core",
     "../android-template-ui",
-    "../android-template-registration"
+    "../android-template-registration",
+    "../android-template-dashboard",
+    "../android-template-data-user"
 )
 
 localModules.forEach {

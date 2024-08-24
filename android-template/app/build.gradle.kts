@@ -10,12 +10,6 @@ plugins {
     id("application-gradle-plugin")
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
-
 android {
     namespace = "com.duartbreedt.androidtemplate"
 
@@ -51,9 +45,11 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
     implementation(libs.bundles.androidtemplate.common)
     implementation(libs.bundles.androidtemplate.registration)
+    implementation(libs.bundles.androidtemplate.dashboard)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.expresso.core)

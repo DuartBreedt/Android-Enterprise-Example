@@ -45,7 +45,8 @@ include(
 private val localModules: List<String> = listOf(
     "../android-template-catalog",
     "../android-template-core",
-    "../android-template-ui"
+    "../android-template-ui",
+    "../android-template-data-user"
 )
 
 localModules.forEach {

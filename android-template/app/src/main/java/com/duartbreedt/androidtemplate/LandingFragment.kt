@@ -14,9 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 import com.duartbreedt.androidtemplate.registration.data.R as RegistrationR
 
+@AndroidEntryPoint
 class LandingFragment : ComposeFragment() {
 
     @Composable
@@ -51,7 +56,7 @@ class LandingFragment : ComposeFragment() {
     }
 
     private fun startRegistrationActivity() {
-        navigate(getString(RegistrationR.string.deeplink_registration_landing))
+        findNavController().navigateToDeeplink(getString(RegistrationR.string.deeplink_registration_landing))
     }
 
 

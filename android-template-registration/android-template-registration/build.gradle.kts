@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -14,12 +12,6 @@ plugins {
 
 // TODO Extract from catalog in plugin
 group = "com.duartbreedt.androidtemplate"
-
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
 
 android {
     namespace = "com.duartbreedt.androidtemplate.registration"
@@ -41,6 +33,8 @@ android {
         compose = true
         viewBinding = true
     }
+
+    // TODO Could potentially remove this
     publishing {
         singleVariant("release") {
             withSourcesJar()
@@ -57,9 +51,12 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
     implementation(libs.bundles.androidtemplate.common)
-    implementation(libs.androidtemplate.registration.data)
+    implementation(project(":android-template-registration-data"))
+    implementation(libs.androidtemplate.dashboard.data)
+    implementation(libs.androidtemplate.data.user)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.expresso.core)

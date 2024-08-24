@@ -1,22 +1,30 @@
 package com.duartbreedt.androidtemplate
 
-import android.content.Context
-import android.content.Intent
+import android.net.Uri
 import androidx.annotation.IdRes
-import androidx.annotation.StringRes
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.ActivityNavigator
+import androidx.annotation.NavigationRes
 import androidx.navigation.NavController
-import kotlin.reflect.KClass
+import androidx.navigation.NavOptions
 
-fun <T : FragmentActivity> NavController.createActivityDestination(
-    activity: KClass<T>,
-    @IdRes navigationId: Int,
-    @StringRes deeplink: Int,
-    context: Context
-): ActivityNavigator.Destination =
-    navigatorProvider.getNavigator(ActivityNavigator::class.java).createDestination().apply {
-        setIntent(Intent(context, activity.java))
-        id = navigationId
-        addDeepLink(context.getString(deeplink))
-    }
+fun NavController.navigateToRes(@IdRes resId: Int) {
+    navigate(resId, args = null, navOptions = buildNavOptions())
+}
+
+fun NavController.navigateToDeeplink(uriString: String) {
+    val uriBuilder = Uri.parse(uriString).buildUpon().clearQuery()
+    val uri = uriBuilder.build()
+
+    navigate(uri, navOptions = buildNavOptions())
+}
+
+fun NavController.addGraph(@NavigationRes resId: Int) {
+    graph.addAll(navInflater.inflate(resId))
+}
+
+private fun buildNavOptions(): NavOptions = NavOptions
+    .Builder()
+    .setEnterAnim(R.anim.slide_in_right)
+    .setExitAnim(R.anim.do_nothing)
+    .setPopExitAnim(R.anim.slide_out_right)
+    .setPopEnterAnim(R.anim.do_nothing)
+    .build()

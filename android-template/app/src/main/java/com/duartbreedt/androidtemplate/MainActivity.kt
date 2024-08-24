@@ -22,6 +22,6 @@ class MainActivity : FragmentActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        appNavigationGraphModifiers.forEach { it.addActivity(navController) }
+        appNavigationGraphModifiers.forEach { it.addGraph(navController) }
     }
 }

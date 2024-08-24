@@ -24,16 +24,42 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.duartbreedt.androidtemplate.ComposeFragment
 import com.duartbreedt.androidtemplate.PrimaryButton
+import com.duartbreedt.androidtemplate.navigateToDeeplink
 import com.duartbreedt.androidtemplate.registration.viewmodel.RegistrationViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import com.duartbreedt.androidtemplate.dashboard.data.R as DashboardR
 
+@AndroidEntryPoint
 class PersonalizeProfileFragment : ComposeFragment() {
 
     private val registrationViewModel: RegistrationViewModel by activityViewModels<RegistrationViewModel>()
 
+    private val registrationStatusObserver: (value: Boolean) -> Unit = { success ->
+        if (success) {
+            findNavController().navigateToDeeplink(getString(DashboardR.string.deeplink_dashboard_landing))
+        } else {
+            // TODO: Do something about this
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        registrationViewModel.registrationStatusObservable.observe(viewLifecycleOwner, registrationStatusObserver)
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        registrationViewModel.registrationStatusObservable.removeObserver(registrationStatusObserver)
+    }
+
     @Composable
     override fun FragmentContent() {
+
         val username: String? by registrationViewModel.usernameObservable.observeAsState()
         val color: Color? by registrationViewModel.colorObservable.observeAsState()
 
@@ -58,7 +84,7 @@ class PersonalizeProfileFragment : ComposeFragment() {
             }
             Spacer(modifier = Modifier.height(8.dp))
             PrimaryButton("Continue") {
-                // TODO registrationViewModel.register()
+                registrationViewModel.register()
             }
         }
     }

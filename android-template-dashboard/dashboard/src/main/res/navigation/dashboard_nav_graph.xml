@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/dashboardLandingFragment">
+
+    <fragment
+        android:id="@+id/dashboardLandingFragment"
+        android:name="com.duartbreedt.androidtemplate.dashboard.view.LandingFragment">
+
+        <deepLink
+            android:id="@+id/deeplink_dashboard_landing"
+            app:uri="@string/deeplink_dashboard_landing" />
+
+    </fragment>
+
+</navigation>

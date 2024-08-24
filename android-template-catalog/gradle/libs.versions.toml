@@ -1,7 +1,7 @@
 [versions]
 jetpack-navigation = "2.7.7"
 android-gradle-plugin = "8.5.1"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 hilt = "2.51.1"
 
 [libraries]
@@ -11,6 +11,9 @@ androidtemplate-core = { module = "com.duartbreedt.androidtemplate:android-templ
 androidtemplate-ui = { module = "com.duartbreedt.androidtemplate:android-template-ui", version = "1.0.0-SNAPSHOT" }
 androidtemplate-registration = { module = "com.duartbreedt.androidtemplate:android-template-registration", version = "1.0.0-SNAPSHOT" }
 androidtemplate-registration-data = { module = "com.duartbreedt.androidtemplate:android-template-registration-data", version = "1.0.0-SNAPSHOT" }
+androidtemplate-dashboard = { module = "com.duartbreedt.androidtemplate:dashboard", version = "1.0.0-SNAPSHOT" }
+androidtemplate-dashboard-data = { module = "com.duartbreedt.androidtemplate:dashboard-data", version = "1.0.0-SNAPSHOT" }
+androidtemplate-data-user = { module = "com.duartbreedt.androidtemplate:data-user-api", version = "1.0.0-SNAPSHOT" }
 
 # Compose
 ## Platform
@@ -22,6 +25,7 @@ compose-ui-graphics.module = "androidx.compose.ui:ui-graphics"
 compose-ui-tooling-preview.module = "androidx.compose.ui:ui-tooling-preview"
 compose-material3.module = "androidx.compose.material3:material3"
 androidx-activity-compose = "androidx.activity:activity-compose:1.9.1"
+androidx-fragment-compose = "androidx.fragment:fragment-compose:1.8.2"
 androidx-compose-runtime-livdata.module = "androidx.compose.runtime:runtime-livedata"
 
 ## Android Test Internal Dependencies
@@ -46,9 +50,10 @@ androidx-navigation-testing = { module = "androidx.navigation:navigation-testing
 # Hilt
 ## Internal Dependencies
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.2.0" }
 
 ## Annotation Processors
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version = "2.48" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
 # Misc
 
@@ -67,8 +72,9 @@ androidx-test-expresso-core = "androidx.test.espresso:espresso-core:3.6.1"
 [bundles]
 androidtemplate-common = ["androidtemplate-core", "androidtemplate-ui"]
 androidtemplate-registration = ["androidtemplate-registration", "androidtemplate-registration-data"]
+androidtemplate-dashboard = ["androidtemplate-dashboard", "androidtemplate-dashboard-data"]
 
-compose = ["compose-ui", "compose-ui-graphics", "compose-ui-tooling-preview", "compose-material3", "androidx-activity-compose", "androidx-compose-runtime-livdata"]
+compose = ["compose-ui", "compose-ui-graphics", "compose-ui-tooling-preview", "compose-material3", "androidx-activity-compose", "androidx-fragment-compose", "androidx-compose-runtime-livdata"]
 debug-compose = ["compose-ui-tooling", "compose-ui-test-manifest"]
 android-test-compose = ["compose-ui-test-junit4"]
 
@@ -81,5 +87,5 @@ android-application = { id = "com.android.application", version.ref = "android-g
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.24" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.10-1.0.24" }
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

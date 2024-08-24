@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -11,12 +9,6 @@ plugins {
 
 // TODO Extract from catalog in plugin
 group = "com.duartbreedt.androidtemplate"
-
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
 
 android {
     namespace = "com.duartbreedt.androidtemplate"
@@ -34,7 +26,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    
+
     publishing {
         singleVariant("release") {
             withSourcesJar()

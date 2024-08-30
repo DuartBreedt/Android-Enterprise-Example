@@ -1,11 +1,13 @@
 package com.duartbreedt.androidtemplate.registration.view
 
 import android.content.res.Configuration
+import android.view.KeyEvent.KEYCODE_ENTER
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -16,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
@@ -32,6 +35,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class LandingFragment : ComposeFragment() {
 
     private val registrationViewModel: RegistrationViewModel by activityViewModels<RegistrationViewModel>()
+
+    private fun onContinuePressed(newUsername: String): Boolean {
+        registrationViewModel.setUsername(newUsername)
+        findNavController().navigateToRes(R.id.personalizeProfile)
+        return true
+    }
 
     @Composable
     override fun FragmentContent() {
@@ -51,17 +60,24 @@ class LandingFragment : ComposeFragment() {
             }
             Spacer(modifier = Modifier.height(8.dp))
             PrimaryButton("Continue") {
-                registrationViewModel.setUsername(newUsername)
-                findNavController().navigateToRes(R.id.personalizeProfile)
+                onContinuePressed(newUsername)
             }
         }
     }
+
 
     @Composable
     fun Username(username: String, onUsernameChanged: (String) -> Unit) {
         TextField(
             value = username,
+            singleLine = true,
             onValueChange = { onUsernameChanged(it) },
+            keyboardActions = KeyboardActions(
+                onDone = { onContinuePressed(username) }
+            ),
+            modifier = Modifier.onKeyEvent {
+                if (it.nativeKeyEvent.keyCode == KEYCODE_ENTER) onContinuePressed(username) else false
+            },
             label = { Text("Username") }
         )
     }

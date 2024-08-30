@@ -13,13 +13,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,9 +29,11 @@ import androidx.navigation.fragment.findNavController
 import com.duartbreedt.androidtemplate.ComposeFragment
 import com.duartbreedt.androidtemplate.Event
 import com.duartbreedt.androidtemplate.PrimaryButton
+import com.duartbreedt.androidtemplate.fromHex
 import com.duartbreedt.androidtemplate.navigateToDeeplink
 import com.duartbreedt.androidtemplate.registration.R
 import com.duartbreedt.androidtemplate.registration.viewmodel.RegistrationViewModel
+import com.duartbreedt.androidtemplate.safely
 import dagger.hilt.android.AndroidEntryPoint
 import com.duartbreedt.androidtemplate.dashboard.data.R as DashboardR
 
@@ -71,19 +74,24 @@ class PersonalizeProfileFragment : ComposeFragment() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(username?.peekContent() ?: "", color = color?.peekContent() ?: MaterialTheme.colorScheme.onSurface)
+            Text(
+                text = username?.peekContent() ?: "",
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(16.dp, 16.dp, 16.dp, 16.dp))
+                    .safely(color?.peekContent()) { Modifier.background(it) }
+                    .padding(8.dp)
+            )
             Spacer(modifier = Modifier.height(8.dp))
             Text("Select your color")
+            Row(Modifier.padding(bottom = 16.dp)) {
+                ClickableCircle(Color.fromHex("EB9DA2"), registrationViewModel::setColor)
+                ClickableCircle(Color.fromHex("F0B884"), registrationViewModel::setColor)
+                ClickableCircle(Color.fromHex("E8E6A5"), registrationViewModel::setColor)
+            }
             Row {
-                ClickableCircle(Color.Red) {
-                    registrationViewModel.setColor(it)
-                }
-                ClickableCircle(Color.Blue) {
-                    registrationViewModel.setColor(it)
-                }
-                ClickableCircle(Color.Green) {
-                    registrationViewModel.setColor(it)
-                }
+                ClickableCircle(Color.fromHex("BBE8B5"), registrationViewModel::setColor)
+                ClickableCircle(Color.fromHex("ACBBE8"), registrationViewModel::setColor)
+                ClickableCircle(Color.fromHex("C5ACE8"), registrationViewModel::setColor)
             }
             Spacer(modifier = Modifier.height(8.dp))
             PrimaryButton("Continue") {
@@ -100,9 +108,7 @@ class PersonalizeProfileFragment : ComposeFragment() {
                 .height(20.dp)
                 .aspectRatio(1f)
                 .background(color, shape = CircleShape)
-                .clickable {
-                    onColorChanged(color)
-                }
+                .clickable { onColorChanged(color) }
         )
     }
 

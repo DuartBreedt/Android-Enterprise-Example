@@ -1,9 +1,8 @@
 package com.duartbreedt.androidtemplate.api
 
-import kotlinx.serialization.Serializable
+import androidx.compose.ui.graphics.Color
 
-@Serializable
 data class User(
     val username: String,
-    val color: String
+    val color: Color
 )

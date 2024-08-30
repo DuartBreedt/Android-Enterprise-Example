@@ -1,21 +1,24 @@
 package com.duartbreedt.androidtemplate.api
 
+import androidx.compose.ui.graphics.Color
 import io.ktor.client.plugins.websocket.DefaultClientWebSocketSession
 import io.ktor.client.plugins.websocket.converter
 import io.ktor.client.plugins.websocket.sendSerialized
 import io.ktor.client.plugins.websocket.webSocketSession
-import io.ktor.client.request.accept
-import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
 import io.ktor.serialization.suitableCharset
 import io.ktor.util.reflect.typeInfo
-import kotlinx.coroutines.flow.MutableSharedFlow
+import io.ktor.websocket.close
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
 
 class ChatRepository @Inject constructor() {
+
+    suspend fun endConnection(session:DefaultClientWebSocketSession?) {
+        session?.close()
+    }
 
     suspend fun connect(id: Int?): DefaultClientWebSocketSession? {
         return try {
@@ -32,7 +35,8 @@ class ChatRepository @Inject constructor() {
         }
     }
 
-    suspend fun receiveMessages(session: DefaultClientWebSocketSession, block: (message: MessageResponse) -> Unit) {
+    @OptIn(ExperimentalStdlibApi::class)
+    suspend fun receiveMessages(session: DefaultClientWebSocketSession, block: (message: Message) -> Unit) {
         session.incoming.consumeAsFlow()
             .mapNotNull {
                 if (session.converter?.isApplicable(it) != true) return@mapNotNull null
@@ -40,7 +44,7 @@ class ChatRepository @Inject constructor() {
                 val typeInfo = typeInfo<MessageResponse>()
                 session.converter!!.deserialize(charset, typeInfo, it) as MessageResponse
             }
-            .collect { block(it) }
+            .collect { block(Message(it.userId, User(it.user.username, Color(it.user.color.hexToULong())), it.message)) }
     }
 
     suspend fun sendMessage(session: DefaultClientWebSocketSession, message: String) {

@@ -53,18 +53,18 @@ fun AndroidTemplateTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-//    val view = LocalView.current
-//    if (!view.isInEditMode) {
-//        SideEffect {
-//            var context = view.context
-//             while (context is FragmentContextWrapper)
-//                 context = context.baseContext
-//
-//            val window = (context as Activity).window
-//            window.statusBarColor = colorScheme.primary.toArgb()
-//            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-//        }
-//    }
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            var context = view.context
+             while (context is FragmentContextWrapper)
+                 context = context.baseContext
+
+            val window = (context as Activity).window
+            window.statusBarColor = colorScheme.primary.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        }
+    }
 
     MaterialTheme(
         colorScheme = colorScheme,

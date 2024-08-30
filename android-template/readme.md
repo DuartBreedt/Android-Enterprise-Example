@@ -11,16 +11,13 @@
 - Use clean architecture!
 - Variants + env API domains + multiple BFFs
 - Create plugin to extract common app/library set up
-- Register (own activity & module)
-  - RoomDB
-- KTor API
-- Dashboard (own activity & module)
+- RoomDB?
 - Article on my set up.
 - Article on why using plugins for dependencies in an enterprise environment discourages innovation and flexibility. 
 
 # Concepts used
 - Repository per module to manage various teams' access
-- Activity per module, fragment per screen, compose for UI
+- Fragment per screen, compose for UI
 - Navigation strategy
 - Gradle catalog for dependency management
 - Plugin for library and application set up (TODO)
@@ -28,3 +25,4 @@
 - Sharing data models (data modules)
 - DI with Hilt
 - MVVM
+  - LiveData, SharedFlow

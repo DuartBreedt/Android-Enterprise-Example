@@ -29,8 +29,6 @@ fun Application.configureSocketRouting(userService: UserService) {
                 return@webSocket
             }
 
-           // send("You are connected to the AndroidTemplate API")
-
             with(handleOutgoingMessages(sharedFlow)) {
                 handleIncomingMessages(id, user, this, messageResponseFlow)
             }
@@ -40,11 +38,11 @@ fun Application.configureSocketRouting(userService: UserService) {
 
 suspend fun WebSocketServerSession.handleOutgoingMessages(sharedFlow: SharedFlow<Message>): Job {
     @Serializable
-    data class Response(val username: String, val message: String)
+    data class Response(val userId: Int, val user: ExposedUser, val message: String)
 
     return launch {
         sharedFlow.collect { message ->
-            sendSerialized(Response(message.user.username, message.message))
+            sendSerialized(Response(message.id, message.user, message.message))
         }
     }
 }

@@ -41,7 +41,7 @@ class RegistrationViewModel @Inject constructor(
     fun register(username: String?, color: Color?) {
         viewModelScope.launch(Dispatchers.IO) {
             val id: Int? =
-                if (username != null && color != null) userRepository.setUser(User(username, color.toString()))
+                if (username != null && color != null) userRepository.setUser(User(username, color))
                 else null
 
             UserSession.id = id

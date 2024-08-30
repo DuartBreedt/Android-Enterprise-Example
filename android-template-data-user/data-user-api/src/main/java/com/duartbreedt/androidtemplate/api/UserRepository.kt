@@ -1,5 +1,6 @@
 package com.duartbreedt.androidtemplate.api
 
+import androidx.compose.ui.graphics.Color
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.post
@@ -14,6 +15,7 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor() {
 
+    @OptIn(ExperimentalStdlibApi::class)
     suspend fun setUser(user: User): Int? {
         @Serializable
         data class Response(val id: Int)
@@ -24,7 +26,7 @@ class UserRepository @Inject constructor() {
         try {
             val response: HttpResponse = HttpClient.instance.post("http://localhost:8080/users") {
                 contentType(ContentType.Application.Json)
-                setBody(Request(user.username, user.color.toString()))
+                setBody(Request(user.username, user.color.value.toHexString()))
             }
 
             if (!response.status.isSuccess()) {
@@ -40,7 +42,9 @@ class UserRepository @Inject constructor() {
         }
     }
 
+    @OptIn(ExperimentalStdlibApi::class)
     suspend fun getUser(id: Int?): User? {
+
 
         try {
             val response: HttpResponse = HttpClient.instance.get("http://localhost:8080/users") {
@@ -55,7 +59,9 @@ class UserRepository @Inject constructor() {
                 return null
             }
 
-            return response.body()
+            val userResponse: UserResponse = response.body()
+
+            return User(userResponse.username, Color(userResponse.color.hexToULong()))
 
         } catch (e: Exception) {
             // TODO Handle error

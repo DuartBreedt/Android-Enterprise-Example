@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.bundles.androidtemplate.common)
     implementation(project(":dashboard-data"))
     implementation(libs.androidtemplate.data.user)
+    implementation(platform(libs.ktor.bom))
+    implementation(libs.bundles.ktor)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.expresso.core)

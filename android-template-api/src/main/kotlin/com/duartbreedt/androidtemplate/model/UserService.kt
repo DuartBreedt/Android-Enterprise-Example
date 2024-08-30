@@ -23,7 +23,7 @@ class UserService(database: Database) {
 
     suspend fun create(user: ExposedUser): Int = dbQuery {
         Users.insert {
-            it[name] = user.name
+            it[name] = user.username
             it[color] = user.color
         }[Users.id]
     }
@@ -40,7 +40,7 @@ class UserService(database: Database) {
     suspend fun update(id: Int, user: ExposedUser) {
         dbQuery {
             Users.update({ Users.id eq id }) {
-                it[name] = user.name
+                it[name] = user.username
                 it[color] = user.color
             }
         }

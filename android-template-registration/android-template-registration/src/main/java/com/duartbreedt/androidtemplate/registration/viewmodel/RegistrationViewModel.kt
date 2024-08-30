@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.duartbreedt.androidtemplate.api.User
 import com.duartbreedt.androidtemplate.api.UserRepository
+import com.duartbreedt.androidtemplate.api.UserSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,11 +43,15 @@ class RegistrationViewModel @Inject constructor(
     }
 
     fun register() {
-        val success =
-            if (username != null && color != null) userRepository.setUser(User(username!!, color!!))
-            else false
+        viewModelScope.launch(Dispatchers.IO) {
+            val id: Int? =
+                if (username != null && color != null) userRepository.setUser(User(username!!, color.toString()))
+                else null
 
-        postRegistrationStatus(success)
+            UserSession.id = id
+
+            postRegistrationStatus(id != null)
+        }
     }
 
     private fun postUsername() {

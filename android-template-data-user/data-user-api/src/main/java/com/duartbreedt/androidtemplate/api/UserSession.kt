@@ -1,11 +1,8 @@
 package com.duartbreedt.androidtemplate.api
 
-import androidx.compose.ui.graphics.Color
-
-internal object UserSession {
-    var username: String? = null
-    var color: Color? = null
+object UserSession {
+    var id: Int? = null
 
     val isSet: Boolean
-        get() = username != null && color != null
+        get() = id != null
 }

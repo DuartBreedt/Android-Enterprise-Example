@@ -7,6 +7,7 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.Serializable
 
 fun Application.configureRouting(userService: UserService) {
 
@@ -14,9 +15,12 @@ fun Application.configureRouting(userService: UserService) {
 
         // Create user
         post("/users") {
+            @Serializable
+            data class Response(val id: Int)
+
             val user = call.receive<ExposedUser>()
             val id = userService.create(user)
-            call.respond(HttpStatusCode.Created, id)
+            call.respond(HttpStatusCode.Created, Response(id))
         }
 
         // Read user

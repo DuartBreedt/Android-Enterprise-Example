@@ -3,15 +3,16 @@ package com.duartbreedt.androidtemplate.routing
 import com.duartbreedt.androidtemplate.model.ExposedUser
 import com.duartbreedt.androidtemplate.model.Message
 import com.duartbreedt.androidtemplate.model.UserService
+import io.ktor.serialization.*
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
+import io.ktor.util.reflect.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.Serializable
 
 fun Application.configureSocketRouting(userService: UserService) {
 
@@ -20,36 +21,47 @@ fun Application.configureSocketRouting(userService: UserService) {
 
     routing {
 
-        webSocket("/connect/{id}") {
-            val id = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+        webSocket("/connect") {
+            val id = call.request.queryParameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             val user = userService.read(id)
             if (user == null) {
                 close(CloseReason(CloseReason.Codes.CANNOT_ACCEPT, "User not found!"))
                 return@webSocket
             }
 
-            send("You are connected to the AndroidTemplate API")
+           // send("You are connected to the AndroidTemplate API")
 
-            with(handleOutgoingMessages(user, sharedFlow)) {
+            with(handleOutgoingMessages(sharedFlow)) {
                 handleIncomingMessages(id, user, this, messageResponseFlow)
             }
         }
     }
 }
 
-suspend fun WebSocketServerSession.handleOutgoingMessages(user: ExposedUser?, sharedFlow: SharedFlow<Message>): Job {
+suspend fun WebSocketServerSession.handleOutgoingMessages(sharedFlow: SharedFlow<Message>): Job {
+    @Serializable
+    data class Response(val username: String, val message: String)
+
     return launch {
         sharedFlow.collect { message ->
-            sendSerialized("${user?.name}: ${message.message}")
+            sendSerialized(Response(message.user.username, message.message))
         }
     }
 }
 
-suspend fun WebSocketSession.handleIncomingMessages(id: Int, user: ExposedUser, job: Job, messageResponseFlow: MutableSharedFlow<Message>) {
+suspend fun WebSocketServerSession.handleIncomingMessages(id: Int, user: ExposedUser, job: Job, messageResponseFlow: MutableSharedFlow<Message>) {
+    @Serializable
+    data class MessageResponse(val message: String)
+
     runCatching {
         incoming.consumeAsFlow()
-            .mapNotNull { (it as? Frame.Text)?.readText() }
-            .collect { messageResponseFlow.emit(Message(id, user, it)) }
+            .mapNotNull {
+                if (converter?.isApplicable(it) != true) return@mapNotNull null
+                val charset = call.request.headers.suitableCharset()
+                val typeInfo = typeInfo<MessageResponse>()
+                converter!!.deserialize(charset, typeInfo, it) as MessageResponse
+            }
+            .collect { messageResponseFlow.emit(Message(id, user, it.message)) }
     }.onFailure { exception ->
         println("WebSocket exception: ${exception.localizedMessage}")
     }.also {

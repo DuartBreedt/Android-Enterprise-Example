@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.kotlin.serialization)
     `maven-publish`
 
     // TODO Extract to catalog
@@ -52,6 +53,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(platform(libs.ktor.bom))
+    implementation(libs.bundles.ktor)
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)

@@ -3,4 +3,4 @@ package com.duartbreedt.androidtemplate.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ExposedUser(val name: String, val color: String)
+data class ExposedUser(val username: String, val color: String)

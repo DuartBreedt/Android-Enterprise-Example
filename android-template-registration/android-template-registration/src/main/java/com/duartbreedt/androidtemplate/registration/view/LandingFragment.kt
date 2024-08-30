@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.duartbreedt.androidtemplate.ComposeFragment
+import com.duartbreedt.androidtemplate.Event
 import com.duartbreedt.androidtemplate.PrimaryButton
 import com.duartbreedt.androidtemplate.navigateToRes
 import com.duartbreedt.androidtemplate.registration.R
@@ -35,8 +36,8 @@ class LandingFragment : ComposeFragment() {
     @Composable
     override fun FragmentContent() {
 
-        val username: String? by registrationViewModel.usernameObservable.observeAsState()
-        var newUsername: String by rememberSaveable { mutableStateOf(username ?: "") }
+        val username: Event<String>? by registrationViewModel.usernameObservable.observeAsState()
+        var newUsername: String by rememberSaveable { mutableStateOf(username?.peekContent() ?: "") }
 
         Column(
             modifier = Modifier.fillMaxSize(),

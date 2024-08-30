@@ -26,8 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.duartbreedt.androidtemplate.ComposeFragment
+import com.duartbreedt.androidtemplate.Event
 import com.duartbreedt.androidtemplate.PrimaryButton
 import com.duartbreedt.androidtemplate.navigateToDeeplink
+import com.duartbreedt.androidtemplate.registration.R
 import com.duartbreedt.androidtemplate.registration.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.duartbreedt.androidtemplate.dashboard.data.R as DashboardR
@@ -37,9 +39,10 @@ class PersonalizeProfileFragment : ComposeFragment() {
 
     private val registrationViewModel: RegistrationViewModel by activityViewModels<RegistrationViewModel>()
 
-    private val registrationStatusObserver: (value: Boolean) -> Unit = { success ->
-        if (success) {
-            findNavController().navigateToDeeplink(getString(DashboardR.string.deeplink_dashboard_landing))
+    private val registrationStatusObserver: (value: Event<Boolean>) -> Unit = { event ->
+        if (event.getContentIfNotHandled() == true) {
+            registrationViewModel.clearValues()
+            findNavController().navigateToDeeplink(getString(DashboardR.string.deeplink_dashboard_landing), R.id.registrationLandingFragment)
         } else {
             // TODO: Do something about this
         }
@@ -60,15 +63,15 @@ class PersonalizeProfileFragment : ComposeFragment() {
     @Composable
     override fun FragmentContent() {
 
-        val username: String? by registrationViewModel.usernameObservable.observeAsState()
-        val color: Color? by registrationViewModel.colorObservable.observeAsState()
+        val username: Event<String>? by registrationViewModel.usernameObservable.observeAsState()
+        val color: Event<Color>? by registrationViewModel.colorObservable.observeAsState()
 
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(username ?: "", color = color ?: MaterialTheme.colorScheme.onSurface)
+            Text(username?.peekContent() ?: "", color = color?.peekContent() ?: MaterialTheme.colorScheme.onSurface)
             Spacer(modifier = Modifier.height(8.dp))
             Text("Select your color")
             Row {
@@ -84,7 +87,7 @@ class PersonalizeProfileFragment : ComposeFragment() {
             }
             Spacer(modifier = Modifier.height(8.dp))
             PrimaryButton("Continue") {
-                registrationViewModel.register()
+                registrationViewModel.register(username?.peekContent(), color?.peekContent())
             }
         }
     }

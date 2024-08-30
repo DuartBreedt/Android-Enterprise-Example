@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.duartbreedt.androidtemplate.Event
 import com.duartbreedt.androidtemplate.api.User
 import com.duartbreedt.androidtemplate.api.UserRepository
 import com.duartbreedt.androidtemplate.api.UserSession
@@ -17,35 +18,30 @@ class RegistrationViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val usernameObservable: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    val usernameObservable: MutableLiveData<Event<String>> by lazy {
+        MutableLiveData<Event<String>>()
     }
 
-    val colorObservable: MutableLiveData<Color> by lazy {
-        MutableLiveData<Color>()
+    val colorObservable: MutableLiveData<Event<Color>> by lazy {
+        MutableLiveData<Event<Color>>()
     }
 
-    val registrationStatusObservable: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
+    val registrationStatusObservable: MutableLiveData<Event<Boolean>> by lazy {
+        MutableLiveData<Event<Boolean>>()
     }
-
-    private var username: String? = null
-    private var color: Color? = null
 
     fun setUsername(username: String) {
-        this.username = username
-        postUsername()
+        postUsername(username)
     }
 
     fun setColor(color: Color) {
-        this.color = color
-        postColor()
+        postColor(color)
     }
 
-    fun register() {
+    fun register(username: String?, color: Color?) {
         viewModelScope.launch(Dispatchers.IO) {
             val id: Int? =
-                if (username != null && color != null) userRepository.setUser(User(username!!, color.toString()))
+                if (username != null && color != null) userRepository.setUser(User(username, color.toString()))
                 else null
 
             UserSession.id = id
@@ -54,21 +50,27 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    private fun postUsername() {
+    fun clearValues() {
+        usernameObservable.value = Event.empty()
+        colorObservable.value = Event.empty()
+        registrationStatusObservable.value = Event.empty()
+    }
+
+    private fun postUsername(username: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            usernameObservable.postValue(username)
+            usernameObservable.postValue(Event(username))
         }
     }
 
-    private fun postColor() {
+    private fun postColor(color: Color) {
         viewModelScope.launch(Dispatchers.IO) {
-            colorObservable.postValue(color)
+            colorObservable.postValue(Event(color))
         }
     }
 
     private fun postRegistrationStatus(status: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            registrationStatusObservable.postValue(status)
+            registrationStatusObservable.postValue(Event(status))
         }
     }
 }

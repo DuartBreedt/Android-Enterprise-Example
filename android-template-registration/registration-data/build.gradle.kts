@@ -6,17 +6,12 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     `maven-publish`
 
-    // TODO Extract to catalog
-    id("library-gradle-plugin")
+    alias(libs.plugins.library.gradle.plugin)
 }
 
-// TODO Extract from catalog in plugin
-group = "com.duartbreedt.androidtemplate"
-
 android {
-    namespace = "com.duartbreedt.androidtemplate.registration"
+    namespace = "com.duartbreedt.androidtemplate.registration.data"
 
-    // TODO Extract from catalog in plugin
     version = "1.0.0-SNAPSHOT"
 
     defaultConfig {
@@ -30,15 +25,7 @@ android {
         }
     }
     buildFeatures {
-        compose = true
         viewBinding = true
-    }
-
-    // TODO Could potentially remove this
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
     }
 }
 
@@ -46,23 +33,12 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
-    implementation(libs.bundles.navigation)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
-    implementation(libs.bundles.androidtemplate.common)
-    implementation(project(":android-template-registration-data"))
-    implementation(libs.androidtemplate.dashboard.data)
-    implementation(libs.androidtemplate.data.user)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.expresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.bundles.android.test.compose)
-    debugImplementation(libs.bundles.debug.compose)
 }
 
 publishing {

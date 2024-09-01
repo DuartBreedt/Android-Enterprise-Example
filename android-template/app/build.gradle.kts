@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -7,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.compose.compiler)
 
-    id("application-gradle-plugin")
+    alias(libs.plugins.application.gradle.plugin)
 }
 
 android {
@@ -25,10 +23,6 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-    }
-    buildFeatures {
-        compose = true
-        viewBinding = true
     }
     packaging {
         resources {

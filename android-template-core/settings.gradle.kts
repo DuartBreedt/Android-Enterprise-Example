@@ -36,7 +36,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "android-template-core"
-include(":android-template-core")
+include(":core")
 
 // Local Modules
 private val localModules: List<String> = listOf(

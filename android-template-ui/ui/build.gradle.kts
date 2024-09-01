@@ -8,17 +8,12 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     `maven-publish`
 
-    // TODO Extract to catalog
-    id("library-gradle-plugin")
+    alias(libs.plugins.library.gradle.plugin)
 }
-
-// TODO Extract from catalog in plugin
-group = "com.duartbreedt.androidtemplate"
 
 android {
     namespace = "com.duartbreedt.androidtemplate"
 
-    // TODO Extract from catalog in plugin
     version = "1.0.0-SNAPSHOT"
 
     defaultConfig {
@@ -34,11 +29,6 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
-    }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
     }
 }
 

@@ -8,9 +8,9 @@
   - LocalContentColor (Automatically selects appropriate color for text if the button is dark or light)
 
 ## TODO
+- Create plugin to extract common app/library set up
 - Use clean architecture!
 - Variants + env API domains + multiple BFFs
-- Create plugin to extract common app/library set up
 - RoomDB?
 - Article on my set up.
 - Article on why using plugins for dependencies in an enterprise environment discourages innovation and flexibility. 

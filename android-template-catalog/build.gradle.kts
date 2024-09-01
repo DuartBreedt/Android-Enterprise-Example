@@ -3,7 +3,6 @@ plugins {
     `maven-publish`
 }
 
-// TODO Extract from catalog in plugin
 version = "1.0.0-SNAPSHOT"
 group = "com.duartbreedt.androidtemplate"
 

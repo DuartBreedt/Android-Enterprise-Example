@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,6 +55,7 @@ import com.duartbreedt.androidtemplate.dashboard.R
 import com.duartbreedt.androidtemplate.dashboard.viewmodel.DashboardViewModel
 import com.duartbreedt.androidtemplate.isBlankOrEmpty
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
 
 @AndroidEntryPoint
 class LandingFragment : ComposeFragment() {
@@ -69,18 +74,34 @@ class LandingFragment : ComposeFragment() {
         dashboardViewModel.closeSession()
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun FragmentContent() {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            val listState = rememberLazyListState()
+
+            LaunchedEffect(dashboardViewModel.messages.size) {
+                if (dashboardViewModel.messages.isNotEmpty()) {
+                    coroutineScope {
+                        listState.animateScrollToItem(index = dashboardViewModel.messages.size - 1)
+                    }
+                }
+            }
+
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.Bottom
-            ) { items(dashboardViewModel.messages) { Message(it) } }
+                verticalArrangement = Arrangement.Bottom,
+                state = listState
+            ) {
+                items(dashboardViewModel.messages) {
+                    Message(it)
+                }
+            }
 
             MessageInput()
         }

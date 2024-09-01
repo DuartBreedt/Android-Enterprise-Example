@@ -1,16 +1,16 @@
 [versions]
 jetpack-navigation = "2.7.7"
-android-gradle-plugin = "8.5.1"
+android-gradle-plugin = "8.5.2"
 kotlin = "2.0.10"
 hilt = "2.51.1"
 
 [libraries]
 
 # Android Template Modules
-androidtemplate-core = { module = "com.duartbreedt.androidtemplate:android-template-core", version = "1.0.0-SNAPSHOT" }
-androidtemplate-ui = { module = "com.duartbreedt.androidtemplate:android-template-ui", version = "1.0.0-SNAPSHOT" }
-androidtemplate-registration = { module = "com.duartbreedt.androidtemplate:android-template-registration", version = "1.0.0-SNAPSHOT" }
-androidtemplate-registration-data = { module = "com.duartbreedt.androidtemplate:android-template-registration-data", version = "1.0.0-SNAPSHOT" }
+androidtemplate-core = { module = "com.duartbreedt.androidtemplate:core", version = "1.0.0-SNAPSHOT" }
+androidtemplate-ui = { module = "com.duartbreedt.androidtemplate:ui", version = "1.0.0-SNAPSHOT" }
+androidtemplate-registration = { module = "com.duartbreedt.androidtemplate:registration", version = "1.0.0-SNAPSHOT" }
+androidtemplate-registration-data = { module = "com.duartbreedt.androidtemplate:registration-data", version = "1.0.0-SNAPSHOT" }
 androidtemplate-dashboard = { module = "com.duartbreedt.androidtemplate:dashboard", version = "1.0.0-SNAPSHOT" }
 androidtemplate-dashboard-data = { module = "com.duartbreedt.androidtemplate:dashboard-data", version = "1.0.0-SNAPSHOT" }
 androidtemplate-data-user = { module = "com.duartbreedt.androidtemplate:data-user-api", version = "1.0.0-SNAPSHOT" }
@@ -103,6 +103,9 @@ android-library = { id = "com.android.library", version.ref = "android-gradle-pl
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.10-1.0.24" }
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+application-gradle-plugin = { id = "application-gradle-plugin", version = "1.0.0-SNAPSHOT" }
+library-gradle-plugin = { id = "library-gradle-plugin", version = "1.0.0-SNAPSHOT" }
+feature-module-gradle-plugin = { id = "feature-module-gradle-plugin", version = "1.0.0-SNAPSHOT" }
 
 # Ktor
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version = "2.0.10" }

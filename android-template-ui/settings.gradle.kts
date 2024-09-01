@@ -36,7 +36,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "android-template-ui"
-include(":android-template-ui")
+include(":ui")
 
 // Local Modules
 private val localModules: List<String> = listOf(

@@ -15,7 +15,7 @@
               <build path="$PROJECT_DIR$/../android-template-core" name="android-template-core">
                 <projects>
                   <project path="$PROJECT_DIR$/../android-template-core" />
-                  <project path="$PROJECT_DIR$/../android-template-core/android-template-core" />
+                  <project path="$PROJECT_DIR$/../android-template-core/core" />
                 </projects>
               </build>
               <build path="$PROJECT_DIR$/../android-template-dashboard" name="android-template-dashboard">
@@ -39,14 +39,14 @@
               <build path="$PROJECT_DIR$/../android-template-registration" name="android-template-registration">
                 <projects>
                   <project path="$PROJECT_DIR$/../android-template-registration" />
-                  <project path="$PROJECT_DIR$/../android-template-registration/android-template-registration" />
-                  <project path="$PROJECT_DIR$/../android-template-registration/android-template-registration-data" />
+                  <project path="$PROJECT_DIR$/../android-template-registration/registration" />
+                  <project path="$PROJECT_DIR$/../android-template-registration/registration-data" />
                 </projects>
               </build>
               <build path="$PROJECT_DIR$/../android-template-ui" name="android-template-ui">
                 <projects>
                   <project path="$PROJECT_DIR$/../android-template-ui" />
-                  <project path="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
+                  <project path="$PROJECT_DIR$/../android-template-ui/ui" />
                 </projects>
               </build>
             </builds>
@@ -59,7 +59,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/../android-template-catalog" />
             <option value="$PROJECT_DIR$/../android-template-core" />
-            <option value="$PROJECT_DIR$/../android-template-core/android-template-core" />
+            <option value="$PROJECT_DIR$/../android-template-core/core" />
             <option value="$PROJECT_DIR$/../android-template-dashboard" />
             <option value="$PROJECT_DIR$/../android-template-dashboard/dashboard" />
             <option value="$PROJECT_DIR$/../android-template-dashboard/dashboard-data" />
@@ -67,10 +67,10 @@
             <option value="$PROJECT_DIR$/../android-template-data-user/data-user-api" />
             <option value="$PROJECT_DIR$/../android-template-pluginmanagement" />
             <option value="$PROJECT_DIR$/../android-template-registration" />
-            <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration" />
-            <option value="$PROJECT_DIR$/../android-template-registration/android-template-registration-data" />
+            <option value="$PROJECT_DIR$/../android-template-registration/registration" />
+            <option value="$PROJECT_DIR$/../android-template-registration/registration-data" />
             <option value="$PROJECT_DIR$/../android-template-ui" />
-            <option value="$PROJECT_DIR$/../android-template-ui/android-template-ui" />
+            <option value="$PROJECT_DIR$/../android-template-ui/ui" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

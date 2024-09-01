@@ -37,8 +37,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "android-template-registration"
 include(
-    ":android-template-registration",
-    ":android-template-registration-data"
+    ":registration",
+    ":registration-data"
 )
 
 // Local Modules

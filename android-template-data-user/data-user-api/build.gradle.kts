@@ -7,17 +7,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     `maven-publish`
 
-    // TODO Extract to catalog
-    id("library-gradle-plugin")
+    alias(libs.plugins.library.gradle.plugin)
 }
-
-// TODO Extract from catalog in plugin
-group = "com.duartbreedt.androidtemplate"
 
 android {
     namespace = "com.duartbreedt.androidtemplate.data.user.api"
 
-    // TODO Extract from catalog in plugin
     version = "1.0.0-SNAPSHOT"
 
     defaultConfig {
@@ -30,17 +25,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    buildFeatures {
-        compose = true
-        viewBinding = true
-    }
 
-    // TODO Could potentially remove this
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
 }
 
 dependencies {

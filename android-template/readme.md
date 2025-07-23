@@ -8,21 +8,7 @@
   - LocalContentColor (Automatically selects appropriate color for text if the button is dark or light)
 
 ## TODO
-- Create plugin to extract common app/library set up
-- Use clean architecture!
 - Variants + env API domains + multiple BFFs
-- RoomDB?
+- RoomDB, SharedPreferences, Keystore
 - Article on my set up.
-- Article on why using plugins for dependencies in an enterprise environment discourages innovation and flexibility. 
-
-# Concepts used
-- Repository per module to manage various teams' access
-- Fragment per screen, compose for UI
-- Navigation strategy
-- Gradle catalog for dependency management
-- Plugin for library and application set up (TODO)
-- Composite builds for local development (in lieu of mavenLocal repository)
-- Sharing data models (data modules)
-- DI with Hilt
-- MVVM
-  - LiveData, SharedFlow
+- Article on why using plugins for dependencies in an enterprise environment discourages innovation and flexibility.

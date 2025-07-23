@@ -17,3 +17,14 @@ This API will need to be launched in order to have the app fully functional.
 [Module Diagram](resources/module-diagram.jpg) 
 
 ## Concepts, technology, and architecture used
+- Jetpack Compose
+- Gradle Composite Builds for local development
+- Gradle Version catalog
+- Android project per module with the potnetial of these projects being hosted as their own version control repository to encourage better team ownership.
+- Data module per feature for better separation of concerns between the data and UI. This data module can be consumed by other feature modules.
+- Using deeplinks shared in data moduels to enable navigation between feature modules
+- Plugin module to centralize library and application module boilerplate
+- DI with Hilt
+- MVVM pattern
+- LiveData and SharedFlow
+- KTOR + WebSocket
